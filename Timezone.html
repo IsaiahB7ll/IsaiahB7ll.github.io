@@ -1,1 +1,86 @@
-<h1> Timezone </h1>
+<!DOCTYPE html>
+
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Monoton" rel="stylesheet" type='text/css'>
+<link href="https://fonts.googleapis.com/css?family=Wire+One" rel="stylesheet" type='text/css'>
+<script src="/assets/jquery.js"></script>
+<style>
+body {
+  text-align: center;
+  font-family: 'Monoton', cursive;
+  font-size: 30px;
+  background: yellow;
+}
+button {
+  margin: 40px;
+}
+input {
+  font-size: 30px;
+} 
+.fill {
+  background: white;
+  color: blue;
+  border-bottom: 2px black solid;
+  font-family: 'Wire One';
+  padding: 0 6px;
+  margin: 4px;
+}
+</style>
+</head>
+<body>
+<div class="prompt"></div>
+<button>Next</button>
+<script>
+// List of prompts for the user
+var prompts = [
+	'Type your name or a random name',
+	'Type a place',
+	'Type a adjective about the place',
+	'Type a name of an object',
+	'Type what your going to do with said object',
+	'Type what you think your item is useful for',
+	'Type what do you think about your item in general',
+	'Type an adjective for your item',
+	'Type another adjective for your item',
+   ];
+
+var answers=[];
+// Keep track of current prompt we're on
+var currentPrompt = 0;
+
+// A function that will call the next prompt
+var nextPrompt = function() {
+  //if there's no answer in the form 
+  if (currentPrompt != 0){
+    answers.push($('input').val());
+  }
+	// if there is a next prompt
+	if (currentPrompt < prompts.length) {
+		// put first prompt in all html elements with class 
+		$('.prompt').html(prompts[currentPrompt] +'<br><input type="text">');
+		// move the next prompt into variable currentPrompt 
+		currentPrompt = currentPrompt + 1;
+	}
+	//or else if we're at the end of the array
+	else {
+		// put a new message into the html.
+		showFinal();
+	}
+}
+
+//puts user answers into HTML
+var showFinal = function() {
+  $('.prompt').html('This is the story of <span class="fill">'+answers[0]+'</span> who traveled to a <span class="fill">'+answers[1]+'</span> which was a <span class="fill">'+answers[2]+'</span> place. What <span class="fill">'+answers[0]+'</span> got at this place was a <span class="fill">'+answers[3]+'</span> then <span class="fill">'+answers[0]+'</span> started to <span class="fill">'+answers[4]+'</span> and soon returned home. At home <span class="fill">'+answers[0]+'</span> found out this item is useful for <span class="fill">'+answers[5]+'</span>. <span class="fill">'+answers[0]+'</span> found this item\'s quality was<span class="fill">'+answers[6]+'</span> and <span class="fill">'+answers[7]+'</span>. Next <span class="fill">'+answers[0]+'</span> decided to try what it can do. </span> The item seemed to be really good to have, <span class="fill">'+answers[0]+'</span> then, realized it is <span class="fill">'+answers[8]+'</span.>');
+  $('button').hide();
+}
+// run nextPrompt function when button is clicked
+$('button').click(function() {
+	nextPrompt();
+});
+
+// Show the first prompt as soon as js loads
+nextPrompt();
+</script>
+
+</body>
