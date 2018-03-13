@@ -159,12 +159,21 @@
   
 <footer class="container-fluid text-center">
   <p>These might be subjective to copyright</p>
-  <script>
-      $("button").on("click", function() {
-      alert("Clicked!");
-        });
-  </script>
+  <h1> Hello <span id="clientName"> </span> </h1>  
+  <p> What is your image source? </p>
+  <input type="text" id="clientStatus" maxlength="500">
+  <p> What is the caption? </p>
+  <input type="text" id="imageCaption" maxlength="100">
+  <br>
+  <input type="submit" id="clientSubmit">
 </footer>
+
+<script>
+  $("button").on("click", function() {
+	alert("Clicked!");
+  });
+</script>
+	
 <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
 <script>
   // Initialize Firebase
